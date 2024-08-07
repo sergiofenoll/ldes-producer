@@ -1,6 +1,6 @@
 {
   "name": "@lblod/ldes-producer",
-  "version": "0.5.0-rc2",
+  "version": "0.5.0-rc3",
   "description": "A time fragmenter library for LDES",
   "exports": {
     ".": {
