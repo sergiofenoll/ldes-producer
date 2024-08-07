@@ -11,13 +11,33 @@
       "types": "./dist/lib/fragmenters/fragementer.d.ts",
       "default": "./dist/lib/converters/fragmenter.js"
     },
-    "./models": {
-      "types": "./dist/lib/models/index.d.ts",
-      "default": "./dist/lib/models/index.js"
+    "./models/config": {
+      "types": "./dist/lib/models/config.d.ts",
+      "default": "./dist/lib/models/config.js"
     },
-    "./storage/caching": {
-      "types": "./dist/lib/storage/caching/index.d.ts",
-      "default": "./dist/lib/storage/caching/index.js"
+    "./models/member": {
+      "types": "./dist/lib/models/member.d.ts",
+      "default": "./dist/lib/models/member.js"
+    },
+    "./models/node": {
+      "types": "./dist/lib/models/node.d.ts",
+      "default": "./dist/lib/models/node.js"
+    },
+    "./models/option": {
+      "types": "./dist/lib/models/option.d.ts",
+      "default": "./dist/lib/models/option.js"
+    },
+    "./models/relation": {
+      "types": "./dist/lib/models/relation.d.ts",
+      "default": "./dist/lib/models/relation.js"
+    },
+    "./storage/caching/cache": {
+      "types": "./dist/lib/storage/caching/cache.d.ts",
+      "default": "./dist/lib/storage/caching/cache.js"
+    },
+    "./storage/caching/relation-cache": {
+      "types": "./dist/lib/storage/caching/relationCache.d.ts",
+      "default": "./dist/lib/storage/caching/relationCache.js"
     },
     "./utils/queue": {
       "types": "./dist/lib/utils/queue.d.ts",
