@@ -1,2 +1,3 @@
-export * from './cache';
-export * from './relationCache';
+import * as cache from './cache';
+import * as relationCache from './relationCache';
+export { cache, relationCache };
