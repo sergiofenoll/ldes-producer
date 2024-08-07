@@ -3,7 +3,7 @@ steps:
     image: codeberg.org/woodpecker-plugins/node-pm
     settings:
       run:
-        - prepare
+        - build
       with: npm
   release:
     image: plugins/npm

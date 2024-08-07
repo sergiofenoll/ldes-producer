@@ -1,0 +1,10 @@
+steps:
+  install:
+    image: codeberg.org/woodpecker-plugins/node-pm
+    settings:
+      run:
+        - build
+      with: npm
+
+when:
+  branch: master
