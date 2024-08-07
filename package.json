@@ -2,54 +2,12 @@
   "name": "@lblod/ldes-producer",
   "version": "0.5.0-rc8",
   "description": "A time fragmenter library for LDES",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./fragmenters/fragmenter": {
-      "types": "./dist/lib/fragmenters/fragementer.d.ts",
-      "default": "./dist/lib/converters/fragmenter.js"
-    },
-    "./models/config": {
-      "types": "./dist/lib/models/config.d.ts",
-      "default": "./dist/lib/models/config.js"
-    },
-    "./models/member": {
-      "types": "./dist/lib/models/member.d.ts",
-      "default": "./dist/lib/models/member.js"
-    },
-    "./models/node": {
-      "types": "./dist/lib/models/node.d.ts",
-      "default": "./dist/lib/models/node.js"
-    },
-    "./models/option": {
-      "types": "./dist/lib/models/option.d.ts",
-      "default": "./dist/lib/models/option.js"
-    },
-    "./models/relation": {
-      "types": "./dist/lib/models/relation.d.ts",
-      "default": "./dist/lib/models/relation.js"
-    },
-    "./storage/caching/cache": {
-      "types": "./dist/lib/storage/caching/cache.d.ts",
-      "default": "./dist/lib/storage/caching/cache.js"
-    },
-    "./storage/caching/relation-cache": {
-      "types": "./dist/lib/storage/caching/relationCache.d.ts",
-      "default": "./dist/lib/storage/caching/relationCache.js"
-    },
-    "./utils/queue": {
-      "types": "./dist/lib/utils/queue.d.ts",
-      "default": "./dist/lib/utils/queue.js"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lblod/ldes-producer.git"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsup"
   },
   "files": [
     "dist/",
@@ -93,6 +51,7 @@
     "release-it": "^15.2.0",
     "release-it-lerna-changelog": "^5.0.0",
     "ts-node": "^10.7.0",
+    "tsup": "^8.2.4",
     "typescript": "^4.6.3"
   }
 }
