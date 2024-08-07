@@ -8,7 +8,6 @@ const ttl_read = require('@graphy/content.ttl.read');
 import rdfParser from 'rdf-parse';
 
 import rdfSerializer from 'rdf-serialize';
-import { BASE_FOLDER } from '../../utils/constants';
 import { convertToNode } from '../../converters/node-converters';
 import { createStore } from '../../utils/utils';
 
@@ -22,11 +21,12 @@ import { createStore } from '../../utils/utils';
 export function convert(
   file: string,
   contentType: string,
-  domainName: string
+  domainName: string,
+  baseFolder: string
 ): NodeJS.ReadableStream {
   const triplesStream = readTriplesStream(
     file,
-    domainName + path.relative(BASE_FOLDER, file)
+    domainName + path.relative(baseFolder, file)
   );
   return rdfSerializer.serialize(triplesStream, {
     contentType: contentType,

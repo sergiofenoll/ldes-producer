@@ -5,7 +5,7 @@ import {
   getFirstMatch,
   nowLiteral,
 } from '../utils/utils';
-import Fragmenter from './fragmenter';
+import Fragmenter, { FragmenterArgs } from './fragmenter';
 
 const { namedNode, quad } = DataFactory;
 
@@ -13,12 +13,15 @@ import { PURL, TREE } from '../utils/namespaces';
 import Node from '../models/node';
 import Relation from '../models/relation';
 import * as RDF from '@rdfjs/types';
-import { TIME_TREE_RELATION_PATH } from '../utils/constants';
 import Member from '../models/member';
+import Config from '../models/config';
 
 export default class TimeFragmenter extends Fragmenter {
-  relationPath: RDF.NamedNode<string> = namedNode(TIME_TREE_RELATION_PATH);
-
+  relationPath: RDF.NamedNode<string>;
+  constructor(config: Config, args: FragmenterArgs) {
+    super(config, args);
+    this.relationPath = namedNode(config.timeTreeRelationPath);
+  }
   constructVersionedMember(member: Member): Member {
     const versionedResourceId = generateVersion(member.id);
     const versionedMember = new Member(versionedResourceId);
@@ -66,21 +69,24 @@ export default class TimeFragmenter extends Fragmenter {
         this.relationPath
       )
     );
-    this.cache.addNode(this.fileForNode(currentNode.metadata.id), currentNode);
+    this.config.cache.addNode(
+      this.fileForNode(currentNode.metadata.id),
+      currentNode
+    );
     return currentNode;
   }
 
   async addVersionedMember(versionedMember: Member): Promise<Node> {
-    const lastPageNr = this.cache.getLastPage(this.folder);
+    const lastPageNr = this.config.cache.getLastPage(this.folder);
     let currentNode: Node;
     let pageFile;
     if (lastPageNr) {
       pageFile = this.fileForNode(lastPageNr);
-      currentNode = await this.cache.getNode(pageFile);
+      currentNode = await this.config.cache.getNode(pageFile);
     } else {
       currentNode = this.constructNewNode();
       pageFile = this.fileForNode(currentNode.metadata.id);
-      this.cache.addNode(pageFile, currentNode);
+      this.config.cache.addNode(pageFile, currentNode);
     }
 
     // let currentDataset = await createStore(readTriplesStream(pageFile));

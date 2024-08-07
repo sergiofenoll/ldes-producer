@@ -2,9 +2,8 @@ import { DataFactory, NamedNode } from 'n3';
 import Node from '../models/node';
 import * as RDF from 'rdf-js';
 import path from 'path';
-import Cache from '../storage/caching/cache';
-import { STREAM_PREFIX } from '../utils/constants';
 import Member from '../models/member';
+import Config from '../models/config';
 const { namedNode } = DataFactory;
 
 export interface FragmenterArgs {
@@ -12,36 +11,36 @@ export interface FragmenterArgs {
   maxResourcesPerPage: number;
   maxNodeCountPerSubFolder: number;
   folderDepth: number;
-  cache: Cache;
 }
 export default abstract class Fragmenter {
   folder: string;
   maxResourcesPerPage: number;
   abstract relationPath: RDF.NamedNode;
-  cache: Cache;
   maxNodeCountPerSubFolder: number;
   folderDepth: number;
-
-  constructor({
-    folder,
-    maxResourcesPerPage,
-    maxNodeCountPerSubFolder,
-    folderDepth,
-    cache,
-  }: FragmenterArgs) {
+  config: Config;
+  constructor(
+    config: Config,
+    {
+      folder,
+      maxResourcesPerPage,
+      maxNodeCountPerSubFolder,
+      folderDepth,
+    }: FragmenterArgs
+  ) {
     this.folder = folder;
     this.maxResourcesPerPage = maxResourcesPerPage;
     this.maxNodeCountPerSubFolder = maxNodeCountPerSubFolder;
     this.folderDepth = folderDepth;
-    this.cache = cache;
+    this.config = config;
   }
   constructNewNode(): Node {
-    const nodeId = (this.cache.getLastPage(this.folder) || 0) + 1;
-    this.cache.updateLastPage(this.folder, nodeId);
+    const nodeId = (this.config.cache.getLastPage(this.folder) || 0) + 1;
+    this.config.cache.updateLastPage(this.folder, nodeId);
 
     const node = new Node({
       id: nodeId,
-      stream: STREAM_PREFIX(path.basename(this.folder)),
+      stream: this.config.streamPrefix(path.basename(this.folder)),
       view: this.getRelationReference(nodeId, 1),
     });
     return node;

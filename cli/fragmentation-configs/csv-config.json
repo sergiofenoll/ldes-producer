@@ -1,9 +1,0 @@
-{
-  "resourceType": "https://example.org/Movie",
-  "resourceIdField": "movieId",
-  "resourceIdPrefix": "https://example.org/movies/",
-  "propertyMappings": {
-    "title": "https://example.org/name",
-    "genres": "https://example.org/genres"
-  }
-}

@@ -6,25 +6,30 @@ import { TREE } from '../utils/namespaces';
 import { generateTreeRelation, getFirstMatch } from '../utils/utils';
 import * as RDF from 'rdf-js';
 
-import Fragmenter from './fragmenter';
+import Fragmenter, { FragmenterArgs } from './fragmenter';
 import RelationCache from '../storage/caching/relationCache';
 import { namedNode } from '@rdfjs/data-model';
-import { PREFIX_TREE_RELATION_PATH } from '../utils/constants';
 import Member from '../models/member';
+import Config from '../models/config';
 
 export default class PrefixTreeFragmenter extends Fragmenter {
-  relationPath: RDF.NamedNode<string> = namedNode(PREFIX_TREE_RELATION_PATH);
-  relationCache: RelationCache = new RelationCache();
+  relationPath: RDF.NamedNode<string>;
+  relationCache: RelationCache;
+  constructor(config: Config, args: FragmenterArgs) {
+    super(config, args);
+    this.relationPath = namedNode(config.prefixTreeRelationPath);
+    this.relationCache = new RelationCache();
+  }
   async addMember(member: Member): Promise<Node> {
     const viewFile = this.getViewFile();
     let viewNode: Node;
     // Check if the view node exists, if not, create one
 
     try {
-      viewNode = await this.cache.getNode(viewFile);
+      viewNode = await this.config.cache.getNode(viewFile);
     } catch (e) {
       viewNode = this.constructNewNode();
-      await this.cache.addNode(this.getViewFile(), viewNode);
+      await this.config.cache.addNode(this.getViewFile(), viewNode);
       this.relationCache.addRelation('', this.getViewFile());
     }
     let node = viewNode;
@@ -39,7 +44,7 @@ export default class PrefixTreeFragmenter extends Fragmenter {
       const match = this.relationCache.getLongestMatch(resourceValue);
 
       if (match) {
-        node = await this.cache.getNode(match.nodeFile);
+        node = await this.config.cache.getNode(match.nodeFile);
         currentValue = match.prefix;
       }
       const result = await this._addResource(
@@ -72,7 +77,9 @@ export default class PrefixTreeFragmenter extends Fragmenter {
     let curNode = node;
     while (childMatch && curDepth <= resourceValue.length) {
       // Check if we have to add the resource to a child of the current node, to the current node itself or if we have to split the current node.
-      curNode = await this.cache.getNode(this.fileForNode(childMatch.targetId));
+      curNode = await this.config.cache.getNode(
+        this.fileForNode(childMatch.targetId)
+      );
       curDepth += 1;
       curPrefixValue = childMatch.value.value;
       childMatch = curNode.relationsMap.get(
@@ -141,7 +148,10 @@ export default class PrefixTreeFragmenter extends Fragmenter {
 
     node.delete_members(memberGroups[mostOccuringToken]);
     newNode.add_members(...memberGroups[mostOccuringToken]);
-    await this.cache.addNode(this.fileForNode(newNode.metadata.id), newNode);
+    await this.config.cache.addNode(
+      this.fileForNode(newNode.metadata.id),
+      newNode
+    );
     this.relationCache.addRelation(
       currentValue + mostOccuringToken,
       this.fileForNode(newNode.metadata.id)

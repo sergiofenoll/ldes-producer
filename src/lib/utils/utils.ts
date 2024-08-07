@@ -96,5 +96,3 @@ export function importToStore(
       .once('end', () => resolve())
   );
 }
-
-export type Newable<T> = { new (...args: any[]): T };

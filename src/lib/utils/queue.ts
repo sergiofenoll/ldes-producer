@@ -1,6 +1,11 @@
 // Based on https://medium.com/@karenmarkosyan/how-to-manage-promises-into-dynamic-queue-with-vanilla-javascript-9d0d1f8d4df5
 
-export default class PromiseQueue<T> {
+export interface Queue<T> {
+  push(promise: () => Promise<T>): Promise<T>;
+  pop(): void;
+}
+
+export class PromiseQueue<T> implements Queue<T> {
   promises: {
     promise: () => Promise<T>;
     resolve: (value: T) => void;
@@ -19,7 +24,7 @@ export default class PromiseQueue<T> {
     });
   }
 
-  pop() {
+  pop(): void {
     if (this.runningPromise || !this.promises.length) {
       return;
     }
