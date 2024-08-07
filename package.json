@@ -12,16 +12,16 @@
       "default": "./dist/lib/converters/fragmenter.js"
     },
     "./models": {
-      "types": "./dist/models/index.d.ts",
-      "default": "./dist/models/index.js"
+      "types": "./dist/lib/models/index.d.ts",
+      "default": "./dist/lib/models/index.js"
     },
     "./storage/caching": {
-      "types": "./dist/storage/caching/index.d.ts",
-      "default": "./dist/storage/caching/index.js"
+      "types": "./dist/lib/storage/caching/index.d.ts",
+      "default": "./dist/lib/storage/caching/index.js"
     },
     "./utils/queue": {
-      "types": "./dist/utils/queue.d.ts",
-      "default": "./dist/utils/queue.js"
+      "types": "./dist/lib/utils/queue.d.ts",
+      "default": "./dist/lib/utils/queue.js"
     }
   },
   "repository": {
