@@ -4,24 +4,24 @@
   "description": "A time fragmenter library for LDES",
   "exports": {
     ".": {
-      "types": "dist/index.d.ts",
-      "default": "dist/index.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./fragmenters/fragmenter": {
-      "types": "dist/lib/fragmenters/fragementer.d.ts",
-      "default": "dist/lib/converters/fragmenter.js"
+      "types": "./dist/lib/fragmenters/fragementer.d.ts",
+      "default": "./dist/lib/converters/fragmenter.js"
     },
     "./models": {
-      "types": "dist/models/index.d.ts",
-      "default": "dist/models/index.js"
+      "types": "./dist/models/index.d.ts",
+      "default": "./dist/models/index.js"
     },
     "./storage/caching": {
-      "types": "dist/storage/caching/index.d.ts",
-      "default": "dist/storage/caching/index.js"
+      "types": "./dist/storage/caching/index.d.ts",
+      "default": "./dist/storage/caching/index.js"
     },
     "./utils/queue": {
-      "types": "dist/utils/queue.d.ts",
-      "default": "dist/utils/queue.js"
+      "types": "./dist/utils/queue.d.ts",
+      "default": "./dist/utils/queue.js"
     }
   },
   "repository": {
