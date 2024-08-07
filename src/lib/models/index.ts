@@ -1,7 +1,16 @@
-import * as config from './config';
-import * as member from './member';
-import * as node from './node';
-import * as option from './option';
-import * as relation from './relation';
+import Config, { getConfigFromEnv } from './config';
+import Member from './member';
+import Node, { Metadata } from './node';
+import { AddDataOptions, GetNodeOptions } from './option';
+import Relation from './relation';
 
-export { config, member, node, option, relation };
+export {
+  Config,
+  getConfigFromEnv,
+  Member,
+  Node,
+  Metadata,
+  AddDataOptions,
+  GetNodeOptions,
+  Relation,
+};
