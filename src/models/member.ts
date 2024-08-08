@@ -2,7 +2,7 @@ import { Store } from 'n3';
 import * as RDF from 'rdf-js';
 import { importToStore } from '../utils/utils';
 
-export default class Member {
+export class Member {
   data: Store;
 
   constructor(readonly id: RDF.NamedNode, data: Store = new Store()) {

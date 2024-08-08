@@ -1,8 +1,8 @@
 import { DataFactory } from 'n3';
 const { namedNode } = DataFactory;
-import Relation from './relation';
+import { Relation } from './relation';
 import * as RDF from 'rdf-js';
-import Member from './member';
+import { Member } from './member';
 
 export type Metadata = {
   id: number;
@@ -10,7 +10,7 @@ export type Metadata = {
   view: RDF.NamedNode;
 };
 
-export default class Node {
+export class Node {
   members: Member[] = [];
   relationsMap: Map<string, Relation> = new Map();
 

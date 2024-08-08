@@ -1,6 +1,6 @@
 import * as RDF from 'rdf-js';
 
-export default class Relation {
+export class Relation {
   constructor(
     readonly id: RDF.NamedNode,
     readonly type: RDF.NamedNode,

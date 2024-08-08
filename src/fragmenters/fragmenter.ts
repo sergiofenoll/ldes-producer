@@ -1,9 +1,9 @@
 import { DataFactory, NamedNode } from 'n3';
-import Node from '../models/node';
+import { Node } from '../models/node';
 import * as RDF from 'rdf-js';
 import path from 'path';
-import Member from '../models/member';
-import Config from '../models/config';
+import { Member } from '../models/member';
+import { Config } from '../models/config';
 const { namedNode } = DataFactory;
 
 export interface FragmenterArgs {
@@ -12,7 +12,7 @@ export interface FragmenterArgs {
   maxNodeCountPerSubFolder: number;
   folderDepth: number;
 }
-export default abstract class Fragmenter {
+export abstract class Fragmenter {
   folder: string;
   maxResourcesPerPage: number;
   abstract relationPath: RDF.NamedNode;

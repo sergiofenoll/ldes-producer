@@ -1,6 +1,6 @@
 import fs from 'fs';
 import jsstream from 'stream';
-import Node from '../../models/node';
+import { Node } from '../../models/node';
 import path from 'path';
 
 const ttl_read = require('@graphy/content.ttl.read');

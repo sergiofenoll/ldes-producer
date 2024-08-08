@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Node from '../../models/node';
+import { Node } from '../../models/node';
 import path from 'path';
 
 const ttl_write = require('@graphy/content.ttl.write');

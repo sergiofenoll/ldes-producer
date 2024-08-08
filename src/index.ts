@@ -1,4 +1,4 @@
-import Config from './models/config';
+import { Config } from './models/config';
 import path from 'path';
 import { AddDataOptions, GetNodeOptions } from './models/option';
 
@@ -7,7 +7,7 @@ import { error, fileForPage } from './utils/utils';
 import { convert } from './storage/file-system/reader';
 import extractMembers from './converters/member-converter';
 import { createFragmenter } from './fragmenters/fragmenter-factory';
-import Fragmenter from './fragmenters/fragmenter';
+import { Fragmenter } from './fragmenters/fragmenter';
 
 export * from './fragmenters/';
 export * from './models';

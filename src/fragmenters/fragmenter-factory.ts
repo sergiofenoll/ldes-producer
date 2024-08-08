@@ -1,4 +1,4 @@
-import Config from '../models/config';
+import { Config } from '../models/config';
 import { FragmenterArgs } from './fragmenter';
 import PrefixTreeFragmenter from './prefix-tree-fragmenter';
 import TimeFragmenter from './time-fragmenter';

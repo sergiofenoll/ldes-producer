@@ -1,10 +1,10 @@
-import Node from '../../models/node';
+import { Node } from '../../models/node';
 import { readNode } from '../file-system/reader';
 import { writeNode } from '../file-system/writer';
 import fs from 'fs';
 import path from 'path';
 
-export default class Cache {
+export class Cache {
   nodes: Map<string, Node> = new Map();
   usageCount = 0;
   lruRank: Map<string, number> = new Map();

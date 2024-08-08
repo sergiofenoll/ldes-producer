@@ -1,10 +1,10 @@
 import namespace, { NamespaceBuilder } from '@rdfjs/namespace';
 
-import Cache from '../storage/caching/cache';
+import { Cache } from '../storage/caching/cache';
 import { PromiseQueue, Queue } from '../utils/queue';
-import Node from '../models/node';
+import { Node } from '../models/node';
 
-export default interface Config {
+export interface Config {
   folderDepth: number;
   subFolderNodeCount: number;
   pageResourcesCount: number;

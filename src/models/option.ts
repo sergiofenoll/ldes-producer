@@ -1,4 +1,4 @@
-import Fragmenter from '../fragmenters/fragmenter';
+import { Fragmenter } from '../fragmenters/fragmenter';
 
 export interface GetNodeOptions {
   folder: string;

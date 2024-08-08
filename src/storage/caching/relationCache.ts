@@ -1,4 +1,4 @@
-export default class RelationCache {
+export class RelationCache {
   // maps prefixes to node files
   relationValueMap: Map<string, string> = new Map();
 

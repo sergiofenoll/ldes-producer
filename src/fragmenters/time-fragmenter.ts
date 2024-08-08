@@ -5,16 +5,16 @@ import {
   getFirstMatch,
   nowLiteral,
 } from '../utils/utils';
-import Fragmenter, { FragmenterArgs } from './fragmenter';
+import { Fragmenter, FragmenterArgs } from './fragmenter';
 
 const { namedNode, quad } = DataFactory;
 
 import { PURL, TREE } from '../utils/namespaces';
-import Node from '../models/node';
-import Relation from '../models/relation';
+import { Node } from '../models/node';
+import { Relation } from '../models/relation';
 import * as RDF from '@rdfjs/types';
-import Member from '../models/member';
-import Config from '../models/config';
+import { Member } from '../models/member';
+import { Config } from '../models/config';
 
 export default class TimeFragmenter extends Fragmenter {
   relationPath: RDF.NamedNode<string>;

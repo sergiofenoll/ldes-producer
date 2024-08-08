@@ -1,16 +1,16 @@
 import { DataFactory } from 'n3';
 const { literal } = DataFactory;
-import Node from '../models/node';
-import Relation from '../models/relation';
+import { Node } from '../models/node';
+import { Relation } from '../models/relation';
 import { TREE } from '../utils/namespaces';
 import { generateTreeRelation, getFirstMatch } from '../utils/utils';
 import * as RDF from 'rdf-js';
 
-import Fragmenter, { FragmenterArgs } from './fragmenter';
-import RelationCache from '../storage/caching/relationCache';
+import { Fragmenter, FragmenterArgs } from './fragmenter';
+import { RelationCache } from '../storage/caching/relationCache';
 import { namedNode } from '@rdfjs/data-model';
-import Member from '../models/member';
-import Config from '../models/config';
+import { Member } from '../models/member';
+import { Config } from '../models/config';
 
 export default class PrefixTreeFragmenter extends Fragmenter {
   relationPath: RDF.NamedNode<string>;
