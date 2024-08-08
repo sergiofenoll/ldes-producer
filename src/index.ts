@@ -9,6 +9,11 @@ import extractMembers from './converters/member-converter';
 import { createFragmenter } from './fragmenters/fragmenter-factory';
 import Fragmenter from './fragmenters/fragmenter';
 
+export * from './fragmenters/';
+export * from './models';
+export * from './storage';
+export * from './utils';
+
 const ACCEPTED_CONTENT_TYPES = [
   'application/ld+json',
   'application/n-quads',
