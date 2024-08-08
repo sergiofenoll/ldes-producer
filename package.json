@@ -9,13 +9,8 @@
     "url": "git+https://github.com/lblod/ldes-producer.git"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "tsc"
   },
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE"
-  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
