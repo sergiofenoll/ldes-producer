@@ -2,7 +2,7 @@ import { Fragmenter } from '../fragmenters/fragmenter';
 
 export interface GetNodeOptions {
   folder: string;
-  subFolder?: string;
+  resource?: string;
   nodeId?: number;
   contentType: string;
 }

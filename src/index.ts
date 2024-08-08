@@ -42,7 +42,7 @@ export async function getNode(
     throw error(406);
   }
   const filePath = fileForPage(
-    path.join(pagesFolder, options.subFolder || ''),
+    path.join(pagesFolder, options.resource || ''),
     page
   );
   return {

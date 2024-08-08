@@ -23,7 +23,7 @@ try {
     folder: req.params.folder,
     contentType: contentType,
     nodeId: parseInt(req.params.nodeId ?? '1'),
-    subFolder: req.params[0] || '',
+    resource: req.params[0] || '',
   });
 
   if (result.fromCache) {
