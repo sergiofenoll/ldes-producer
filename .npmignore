@@ -1,0 +1,7 @@
+node_modules
+.woodpecker/
+src/
+.release-it.json
+prettierrc.js
+.eslintrc.js
+release.sh

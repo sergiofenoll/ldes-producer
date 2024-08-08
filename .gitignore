@@ -7,6 +7,7 @@
 !prettierrc.js
 !.release-it.json
 !.eslintrc.js
+!.npmignore
 # directories
 !src/
 !.woodpecker/
