@@ -1,6 +1,58 @@
 # LDES Producer library
 
-WIP
+### Usage
+
+#### Get Node
+
+```ts
+import {
+  getNode as getNodeFn,
+  addData as addDataFn,
+  getConfigFromEnv,
+  ACCEPTED_CONTENT_TYPES,
+} from '@lblod/ldes-producer';
+
+const config = getConfigFromEnv();
+
+try {
+  const contentType = req.accepts(ACCEPTED_CONTENT_TYPES) || '';
+
+  const result = await getNodeFn(config, {
+    folder: req.params.folder,
+    contentType: contentType,
+    nodeId: parseInt(req.params.nodeId ?? '1'),
+    subFolder: req.params[0] || '',
+  });
+
+  if (result.fromCache) {
+    res.header('Cache-Control', 'public, immutable');
+  }
+
+  res.header('Content-Type', contentType);
+
+  result.stream.pipe(res);
+} catch (e) {
+  return next(e);
+}
+```
+
+#### Add data
+
+```ts
+try {
+  const contentType = req.headers['content-type'] as string;
+  await addDataFn(config, {
+    contentType,
+    folder: req.params.folder,
+    body: req.body,
+    fragmenter: req.query.fragmenter as string,
+  });
+
+  res.status(201).send();
+} catch (e) {
+  return next(e);
+}
+```
 
 ### Configuration
 
@@ -15,6 +67,3 @@ The following environment variables can be configured:
 - `FOLDER_DEPTH`: the number of levels the data folder structure should contain. (default: `1`, a flat folder structure)
 - `PAGE_RESOURCES_COUNT`: the number of resources (members) one page should contain. (default: `10`)
 - `SUBFOLDER_NODE_COUNT`: the maximum number of nodes (pages) a subfolder should contain. (default: `10`)
-- `ENABLE_AUTH`: this allows you to add Basic authentication to the POST route, the GET route (used to fetch pages) is always public (default: `false`)
-- `AUTH_USERNAME`: the username to use when enabling Basic authentication. (default: `username`)
-- `AUTH_PASSWORD`: the password to use when enabling Basic authentication. (default: `password`)
