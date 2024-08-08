@@ -14,7 +14,7 @@ export * from './models';
 export * from './storage';
 export * from './utils';
 
-const ACCEPTED_CONTENT_TYPES = [
+export const ACCEPTED_CONTENT_TYPES = [
   'application/ld+json',
   'application/n-quads',
   'application/n-triples',
