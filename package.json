@@ -2,6 +2,8 @@
   "name": "@lblod/ldes-producer",
   "version": "0.5.0-rc10",
   "description": "A time fragmenter library for LDES",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lblod/ldes-producer.git"
@@ -51,7 +53,6 @@
     "release-it": "^15.2.0",
     "release-it-lerna-changelog": "^5.0.0",
     "ts-node": "^10.7.0",
-    "tsup": "^8.2.4",
     "typescript": "^4.6.3"
   }
 }

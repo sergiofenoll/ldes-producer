@@ -1,11 +1,14 @@
-/dist/*
-/.log*
-node_modules
-data
-datasets
-*.log
-profiling*.txt
-.vscode
-build
-start-dev.sh
-.vscode
+/*
+!LICENSE
+!release.sh
+!README.md
+!package.json
+!tsconfig.json
+!prettierrc.js
+!.release-it.json
+!.eslintrc.js
+# directories
+!src/
+!.woodpecker/
+
+

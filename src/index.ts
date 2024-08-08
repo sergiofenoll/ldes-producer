@@ -1,13 +1,13 @@
-import Config from './lib/models/config';
+import Config from './models/config';
 import path from 'path';
-import { AddDataOptions, GetNodeOptions } from './lib/models/option';
+import { AddDataOptions, GetNodeOptions } from './models/option';
 
 import rdfParser from 'rdf-parse';
-import { error, fileForPage } from './lib/utils/utils';
-import { convert } from './lib/storage/file-system/reader';
-import extractMembers from './lib/converters/member-converter';
-import { createFragmenter } from './lib/fragmenters/fragmenter-factory';
-import Fragmenter from './lib/fragmenters/fragmenter';
+import { error, fileForPage } from './utils/utils';
+import { convert } from './storage/file-system/reader';
+import extractMembers from './converters/member-converter';
+import { createFragmenter } from './fragmenters/fragmenter-factory';
+import Fragmenter from './fragmenters/fragmenter';
 
 const ACCEPTED_CONTENT_TYPES = [
   'application/ld+json',
