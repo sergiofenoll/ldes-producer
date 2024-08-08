@@ -2,6 +2,8 @@
 
 ### Usage
 
+`npm install @lblod/ldes-producer`
+
 #### Get Node
 
 ```ts
