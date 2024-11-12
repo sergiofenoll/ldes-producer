@@ -8,6 +8,8 @@ export type Metadata = {
   id: number;
   stream: RDF.NamedNode;
   view: RDF.NamedNode;
+  versionOfPath?: RDF.NamedNode;
+  timestampPath?: RDF.NamedNode;
 };
 
 export class Node {

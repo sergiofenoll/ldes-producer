@@ -1,4 +1,5 @@
 import { DataFactory } from 'n3';
+import path from 'path';
 import {
   generateTreeRelation,
   generateVersion,
@@ -22,6 +23,21 @@ export default class TimeFragmenter extends Fragmenter {
     super(config, args);
     this.relationPath = namedNode(config.timeTreeRelationPath);
   }
+
+  constructNewNode(): Node {
+    const nodeId = (this.config.cache.getLastPage(this.folder) || 0) + 1;
+    this.config.cache.updateLastPage(this.folder, nodeId);
+
+    const node = new Node({
+      id: nodeId,
+      stream: this.config.streamPrefix(path.basename(this.folder)),
+      view: this.getRelationReference(nodeId, 1),
+      timestampPath: this.relationPath,
+      versionOfPath: PURL('isVersionOf'),
+    });
+    return node;
+  }
+
   constructVersionedMember(member: Member): Member {
     const versionedResourceId = generateVersion(member.id);
     const versionedMember = new Member(versionedResourceId);

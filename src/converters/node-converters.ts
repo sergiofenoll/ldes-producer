@@ -16,8 +16,23 @@ export function convertToStream(node: Node) {
       quad(node.metadata.stream, RDF_NAMESPACE('type'), LDES('EventStream')),
       quad(node.metadata.stream, RDF_NAMESPACE('type'), TREE('Collection')),
       quad(node.metadata.stream, TREE('view'), node.metadata.view),
-      quad(node.idNamedNode, RDF_NAMESPACE('type'), TREE('Node')),
     ]
+  );
+  if (node.metadata.timestampPath) {
+    pushToReadable(
+      quadStream,
+      quad(node.metadata.stream, LDES('timestampPath'), node.metadata.timestampPath)
+    );
+  }
+  if (node.metadata.versionOfPath) {
+    pushToReadable(
+      quadStream,
+      quad(node.metadata.stream, LDES('versionOfPath'), node.metadata.versionOfPath),
+    );
+  }
+  pushToReadable(
+    quadStream,
+    quad(node.idNamedNode, RDF_NAMESPACE('type'), TREE('Node')),
   );
 
   // Add the different relations to the store
@@ -73,11 +88,15 @@ function extractMetadata(store: Store): Metadata {
     LDES('EventStream')
   )?.subject;
   const view = getFirstMatch(store, null, TREE('view'))?.object;
+  const timestampPath = getFirstMatch(store, stream, LDES('timestampPath'), null)?.object;
+  const versionOfPath = getFirstMatch(store, stream, LDES('versionOfPath'), null)?.object;
   if (id && stream && view) {
     return {
       id: parseInt(path.parse(id.value).base),
       stream: stream as RDF.NamedNode,
       view: view as RDF.NamedNode,
+      timestampPath: timestampPath as RDF.NamedNode,
+      versionOfPath: versionOfPath as RDF.NamedNode,
     };
   } else {
     throw Error('Reference to id, stream or view not found');
