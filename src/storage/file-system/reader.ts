@@ -1,8 +1,7 @@
-import fs from 'fs';
 import jsstream from 'stream';
 import { Node } from '../../models/node';
 import path from 'path';
-
+import fs from 'fs';
 const ttl_read = require('@graphy/content.ttl.read');
 
 import rdfParser from 'rdf-parse';
@@ -38,12 +37,15 @@ function readTriplesStream(file: string, baseIRI?: string): jsstream.Readable {
     throw Error(`File does not exist: ${file}`);
   }
   const fileStream = fs.createReadStream(file);
+  console.log('filestream created');
   if (baseIRI) {
+    console.log('baseIRI', baseIRI);
     return rdfParser.parse(fileStream, {
       contentType: 'text/turtle',
       baseIRI,
     });
   } else {
+    console.log('no baseIRI, pipe ttl_read');
     return fileStream.pipe(ttl_read());
   }
 }
