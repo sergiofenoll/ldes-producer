@@ -50,7 +50,9 @@ function readTriplesStream(file: string, baseIRI?: string): jsstream.Readable {
 
 export async function readNode(filePath: string): Promise<Node> {
   try {
+    console.log('reading node at', filePath);
     const store = await createStore(readTriplesStream(filePath));
+    console.log('store', store);
     return convertToNode(store);
   } catch (e) {
     throw new Error(`Something went wrong while converting file to node: ${e}`);
