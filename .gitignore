@@ -8,8 +8,10 @@
 !.release-it.json
 !.eslintrc.js
 !.npmignore
+!jest.config.js
 # directories
 !src/
 !.woodpecker/
+!__tests__
 
 
