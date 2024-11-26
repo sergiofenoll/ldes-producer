@@ -3,7 +3,7 @@ const { literal } = DataFactory;
 import { Node } from '../models/node';
 import { Relation } from '../models/relation';
 import { TREE } from '../utils/namespaces';
-import { generateTreeRelation, getFirstMatch } from '../utils/utils';
+import { debugLog, generateTreeRelation, getFirstMatch } from '../utils/utils';
 import * as RDF from 'rdf-js';
 
 import { Fragmenter, FragmenterArgs } from './fragmenter';
@@ -70,8 +70,8 @@ export default class PrefixTreeFragmenter extends Fragmenter {
     depth = 0
   ): Promise<Node> {
     let childMatch = node.relationsMap.get(prefixValue + resourceValue[depth]);
-    console.log(prefixValue + resourceValue[depth]);
-    console.log(node.relationsMap);
+    debugLog(prefixValue + resourceValue[depth]);
+    debugLog(node.relationsMap);
     let curDepth = depth;
     let curPrefixValue = prefixValue;
     let curNode = node;
